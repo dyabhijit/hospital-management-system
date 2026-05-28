@@ -41,6 +41,7 @@ public class HospitalManagementSystem {
             Patient patient = new Patient(connection, scanner);
             Doctor doctor = new Doctor(connection);
             MedicalRecord medicalRecord = new MedicalRecord(connection, scanner);
+            Billing billing = new Billing(connection, scanner);
 
             while (true) {
                 System.out.println("Hospital Management System");
@@ -52,6 +53,10 @@ public class HospitalManagementSystem {
                 System.out.println("6. Add Medical Record");
                 System.out.println("7. View Patient Medical History");
                 System.out.println("8. Delete Medical Record");
+                System.out.println("9.  Generate Bill");
+                System.out.println("10. View Patient Bills");
+                System.out.println("11. Update Payment Status");
+                System.out.println("12. View All Unpaid Bills");
                 System.out.print("Enter Your Choice: ");
                 int choice = getValidIntInput(scanner);
 
@@ -74,6 +79,24 @@ public class HospitalManagementSystem {
                         break;
                     case 8:
                         medicalRecord.deleteRecord();
+                        System.out.println();
+                        break;
+                    case 9:
+                        billing.generateBill();
+                        System.out.println();
+                        break;
+                    case 10:
+                        System.out.print("Enter Patient ID: ");
+                        while (!scanner.hasNextInt()) { scanner.next(); }
+                        billing.viewBillById(scanner.nextInt());
+                        System.out.println();
+                        break;
+                    case 11:
+                        billing.updatePaymentStatus();
+                        System.out.println();
+                        break;
+                    case 12:
+                        billing.viewAllUnpaidBills();
                         System.out.println();
                         break;
                     default:
