@@ -58,3 +58,11 @@ CREATE TABLE medical_records (
 1. Copy `config.properties.example` to `config.properties` inside the `src` folder
 2. Fill in your MySQL credentials
 3. Run `HospitalManagementSystem.java`
+
+## Default Login Credentials
+
+| Role         | Username     | Password   | Access                              |
+|--------------|--------------|------------|-------------------------------------|
+| Admin        | admin        | admin123   | Full access to all features         |
+| Doctor       | doctor       | doctor123  | Patients + Medical records only     |
+| Receptionist | receptionist | recep123   | Patients + Appointments + Billing   |

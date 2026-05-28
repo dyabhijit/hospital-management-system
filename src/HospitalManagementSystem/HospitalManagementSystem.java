@@ -38,80 +38,20 @@ public class HospitalManagementSystem {
                 config.getProperty("db.username"),
                 config.getProperty("db.password")
         )) {
-            Patient patient = new Patient(connection, scanner);
-            Doctor doctor = new Doctor(connection);
-            MedicalRecord medicalRecord = new MedicalRecord(connection, scanner);
-            Billing billing = new Billing(connection, scanner);
+            Auth auth = new Auth(connection, scanner);
+            String[] userInfo = auth.login();
 
-            while (true) {
-                System.out.println("Hospital Management System");
-                System.out.println("1. Add Patients");
-                System.out.println("2. View Patients");
-                System.out.println("3. View Doctors");
-                System.out.println("4. Book Appointments");
-                System.out.println("5. Exit");
-                System.out.println("6. Add Medical Record");
-                System.out.println("7. View Patient Medical History");
-                System.out.println("8. Delete Medical Record");
-                System.out.println("9.  Generate Bill");
-                System.out.println("10. View Patient Bills");
-                System.out.println("11. Update Payment Status");
-                System.out.println("12. View All Unpaid Bills");
-                System.out.print("Enter Your Choice: ");
-                int choice = getValidIntInput(scanner);
-
-                switch (choice) {
-                    case 1: patient.addPatient();   System.out.println(); break;
-                    case 2: patient.viewPatients(); System.out.println(); break;
-                    case 3: doctor.viewDoctors();   System.out.println(); break;
-                    case 4: BookAppointment.bookAppointment(patient, doctor, connection, scanner);
-                        System.out.println(); break;
-                    case 5:
-                        System.out.println("THANK YOU FOR USING HOSPITAL MANAGEMENT SYSTEM");
-                        return;
-                    case 6:
-                        medicalRecord.addMedicalRecord();
-                        System.out.println();
-                        break;
-                    case 7:
-                        medicalRecord.viewRecordsByPatient();
-                        System.out.println();
-                        break;
-                    case 8:
-                        medicalRecord.deleteRecord();
-                        System.out.println();
-                        break;
-                    case 9:
-                        billing.generateBill();
-                        System.out.println();
-                        break;
-                    case 10:
-                        System.out.print("Enter Patient ID: ");
-                        while (!scanner.hasNextInt()) { scanner.next(); }
-                        billing.viewBillById(scanner.nextInt());
-                        System.out.println();
-                        break;
-                    case 11:
-                        billing.updatePaymentStatus();
-                        System.out.println();
-                        break;
-                    case 12:
-                        billing.viewAllUnpaidBills();
-                        System.out.println();
-                        break;
-                    default:
-                        System.out.println("Enter Valid Choice");
-                }
+            if (userInfo == null) {
+                System.out.println("Exiting system.");
+                return;
             }
+
+            String role = userInfo[1];
+            MenuManager menuManager = new MenuManager(role, connection, scanner);
+            menuManager.showMenu();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-    private static int getValidIntInput(Scanner scanner) {
-        while (!scanner.hasNextInt()) {
-            System.out.println("Invalid input. Please enter a number.");
-            scanner.next(); // discard the bad input
-        }
-        return scanner.nextInt();
     }
 }
