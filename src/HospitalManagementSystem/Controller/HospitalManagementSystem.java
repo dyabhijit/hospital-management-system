@@ -1,4 +1,6 @@
-package HospitalManagementSystem;
+package HospitalManagementSystem.Controller;
+
+import HospitalManagementSystem.Auth.Auth;
 
 import java.io.IOException;
 import java.io.InputStream;

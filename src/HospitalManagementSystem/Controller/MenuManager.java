@@ -1,5 +1,6 @@
-package HospitalManagementSystem;
+package HospitalManagementSystem.Controller;
 
+import HospitalManagementSystem.Service.*;
 import java.sql.Connection;
 import java.util.Scanner;
 

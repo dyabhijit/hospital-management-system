@@ -1,4 +1,4 @@
-package HospitalManagementSystem;
+package HospitalManagementSystem.Service;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class BookAppointment {
-    public static void bookAppointment(Patient patient,Doctor doctor,Connection connection, Scanner scanner){
+    public static void bookAppointment(Patient patient, Doctor doctor, Connection connection, Scanner scanner){
         System.out.println("Enter Patient Id");
         while (!scanner.hasNextInt()) { scanner.next(); }
         int patient_id = scanner.nextInt();
