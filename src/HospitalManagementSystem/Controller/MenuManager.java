@@ -1,5 +1,6 @@
 package HospitalManagementSystem.Controller;
 
+import HospitalManagementSystem.DAO.*;
 import HospitalManagementSystem.Service.*;
 import java.sql.Connection;
 import java.util.Scanner;
@@ -13,6 +14,7 @@ public class MenuManager {
     private Billing billing;
     private Scanner scanner;
     private Connection connection;
+    private BillingDao billingDao;
 
     public MenuManager(String role, Connection connection, Scanner scanner) {
         this.role = role;
@@ -22,6 +24,7 @@ public class MenuManager {
         this.doctor = new Doctor(connection);
         this.medicalRecord = new MedicalRecord(connection, scanner);
         this.billing = new Billing(connection, scanner);
+        this.billingDao = new BillingDao(connection);
     }
 
     public void showMenu() {
