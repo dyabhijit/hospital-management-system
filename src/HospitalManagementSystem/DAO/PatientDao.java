@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class PatientDao {
-    Connection connection;
+    private Connection connection;
 
     public PatientDao(Connection connection){
         this.connection = connection;

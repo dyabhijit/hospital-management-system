@@ -20,7 +20,7 @@ public class BookAppointment {
     }
     private BookAppointmentDao bookAppointmentDao;
 
-    public void bookAppointment(Patient patient, Doctor doctor, Connection connection, Scanner scanner){
+    public void bookAppointment(Patient patient, Doctor doctor){
         System.out.println("Enter Patient Id");
         while (!scanner.hasNextInt()) { scanner.next(); }
         int patient_id = scanner.nextInt();

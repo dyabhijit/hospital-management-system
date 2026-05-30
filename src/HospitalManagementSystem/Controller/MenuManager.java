@@ -25,6 +25,7 @@ public class MenuManager {
         this.medicalRecord = new MedicalRecord(connection, scanner);
         this.billing = new Billing(connection, scanner);
         this.billingDao = new BillingDao(connection);
+        this.bookAppointment = new BookAppointment(connection,scanner);
     }
 
     public void showMenu() {
@@ -65,7 +66,7 @@ public class MenuManager {
             case 1:  patient.addPatient();                                    break;
             case 2:  patient.viewPatients();                                  break;
             case 3:  doctor.viewDoctors();                                    break;
-            case 4:  BookAppointment.bookAppointment(patient, doctor, connection, scanner); break;
+            case 4:  bookAppointment.bookAppointment(patient, doctor); break;
             case 5:  medicalRecord.addMedicalRecord();                        break;
             case 6:  medicalRecord.viewRecordsByPatient();                    break;
             case 7:  medicalRecord.deleteRecord();                            break;
@@ -124,7 +125,7 @@ public class MenuManager {
             case 1: patient.addPatient();   break;
             case 2: patient.viewPatients(); break;
             case 3: doctor.viewDoctors();   break;
-            case 4: BookAppointment.bookAppointment(patient, doctor, connection, scanner); break;
+            case 4: bookAppointment.bookAppointment(patient, doctor); break;
             case 5: billing.generateBill(); break;
             case 6:
                 System.out.print("Enter Patient ID: ");
