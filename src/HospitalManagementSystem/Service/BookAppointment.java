@@ -1,6 +1,8 @@
 package HospitalManagementSystem.Service;
 
 import HospitalManagementSystem.DAO.BookAppointmentDao;
+import HospitalManagementSystem.DaoInterfaces.IBookAppointmentDao;
+import HospitalManagementSystem.ServiceInterfaces.IBookAppointment;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class BookAppointment {
+public class BookAppointment implements IBookAppointment {
 
     private Connection connection;
     private Scanner scanner;
@@ -18,7 +20,7 @@ public class BookAppointment {
         this.scanner = scanner;
         this.bookAppointmentDao = new BookAppointmentDao(connection);
     }
-    private BookAppointmentDao bookAppointmentDao;
+    private IBookAppointmentDao bookAppointmentDao;
 
     public void bookAppointment(Patient patient, Doctor doctor){
         System.out.println("Enter Patient Id");

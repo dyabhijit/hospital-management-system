@@ -1,6 +1,8 @@
 package HospitalManagementSystem.Service;
 
 import HospitalManagementSystem.DAO.PatientDao;
+import HospitalManagementSystem.DaoInterfaces.IPatientDao;
+import HospitalManagementSystem.ServiceInterfaces.IPatient;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class Patient {
+public class Patient implements IPatient {
     private Connection connection;
     private Scanner scanner;
 
@@ -18,7 +20,7 @@ public class Patient {
         this.patientDao = new PatientDao(connection);
     }
 
-    private PatientDao patientDao;
+    private IPatientDao patientDao;
 
     public void addPatient(){
         System.out.print("Enter Patient Name: ");

@@ -1,11 +1,13 @@
 package HospitalManagementSystem.Service;
 
 import HospitalManagementSystem.DAO.BillingDao;
+import HospitalManagementSystem.DaoInterfaces.IBillingDao;
+import HospitalManagementSystem.ServiceInterfaces.IBilling;
 
 import java.sql.*;
 import java.util.Scanner;
 
-public class Billing {
+public class Billing implements IBilling {
     private Connection connection;
     private Scanner scanner;
 
@@ -16,7 +18,7 @@ public class Billing {
         this.billingDao = new BillingDao(connection);
     }
 
-    private BillingDao billingDao;
+    private IBillingDao billingDao;
 
     public void generateBill() {
         System.out.print("Enter Patient ID: ");

@@ -1,11 +1,13 @@
 package HospitalManagementSystem.DAO;
 
+import HospitalManagementSystem.DaoInterfaces.IBookAppointmentDao;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class BookAppointmentDao {
+public class BookAppointmentDao implements IBookAppointmentDao {
 
     private Connection connection;
 

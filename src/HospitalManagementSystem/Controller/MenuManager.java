@@ -1,20 +1,23 @@
 package HospitalManagementSystem.Controller;
 
 import HospitalManagementSystem.DAO.*;
+import HospitalManagementSystem.DaoInterfaces.IBillingDao;
 import HospitalManagementSystem.Service.*;
+import HospitalManagementSystem.ServiceInterfaces.*;
+
 import java.sql.Connection;
 import java.util.Scanner;
 
 public class MenuManager {
     private String role;
-    private Patient patient;
-    private Doctor doctor;
-    private BookAppointment bookAppointment;
-    private MedicalRecord medicalRecord;
-    private Billing billing;
+    private IPatient patient;
+    private IDoctor doctor;
+    private IBookAppointment bookAppointment;
+    private IMedicalRecord medicalRecord;
+    private IBilling billing;
     private Scanner scanner;
     private Connection connection;
-    private BillingDao billingDao;
+    private IBillingDao billingDao;
 
     public MenuManager(String role, Connection connection, Scanner scanner) {
         this.role = role;
@@ -66,7 +69,7 @@ public class MenuManager {
             case 1:  patient.addPatient();                                    break;
             case 2:  patient.viewPatients();                                  break;
             case 3:  doctor.viewDoctors();                                    break;
-            case 4:  bookAppointment.bookAppointment(patient, doctor); break;
+            case 4:  bookAppointment.bookAppointment((Patient) patient, (Doctor) doctor); break;
             case 5:  medicalRecord.addMedicalRecord();                        break;
             case 6:  medicalRecord.viewRecordsByPatient();                    break;
             case 7:  medicalRecord.deleteRecord();                            break;
@@ -125,7 +128,7 @@ public class MenuManager {
             case 1: patient.addPatient();   break;
             case 2: patient.viewPatients(); break;
             case 3: doctor.viewDoctors();   break;
-            case 4: bookAppointment.bookAppointment(patient, doctor); break;
+            case 4: bookAppointment.bookAppointment((Patient) patient, (Doctor) doctor); break;
             case 5: billing.generateBill(); break;
             case 6:
                 System.out.print("Enter Patient ID: ");

@@ -1,11 +1,13 @@
 package HospitalManagementSystem.Service;
 
 import HospitalManagementSystem.DAO.MedicalRecordDao;
+import HospitalManagementSystem.DaoInterfaces.IMedicalRecordDao;
+import HospitalManagementSystem.ServiceInterfaces.IMedicalRecord;
 
 import java.sql.*;
 import java.util.Scanner;
 
-public class MedicalRecord {
+public class MedicalRecord implements IMedicalRecord {
     private Connection connection;
     private Scanner scanner;
 
@@ -15,7 +17,7 @@ public class MedicalRecord {
         this.medicalRecordDao = new MedicalRecordDao(connection);
     }
 
-    private MedicalRecordDao medicalRecordDao;
+    private IMedicalRecordDao medicalRecordDao;
 
     public void addMedicalRecord() {
         System.out.print("Enter Patient ID: ");

@@ -1,11 +1,13 @@
 package HospitalManagementSystem.DAO;
 
+import HospitalManagementSystem.DaoInterfaces.IMedicalRecordDao;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class MedicalRecordDao {
+public class MedicalRecordDao implements IMedicalRecordDao {
     private Connection connection;
     public MedicalRecordDao(Connection connection){
         this.connection = connection;

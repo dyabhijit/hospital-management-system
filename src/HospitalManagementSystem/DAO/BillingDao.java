@@ -1,12 +1,14 @@
 package HospitalManagementSystem.DAO;
 
+import HospitalManagementSystem.DaoInterfaces.IBillingDao;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-public class BillingDao {
+public class BillingDao implements IBillingDao {
     private Connection connection;
 
     public BillingDao(Connection connection) {
