@@ -15,8 +15,7 @@ public class PatientDao implements IPatientDao {
 
     public int addPatientDao(String name,int age,String gender){
         String query = "insert into patients(name, age, gender) values (?,?,?)";
-        try{
-            PreparedStatement ps = connection.prepareStatement(query);
+        try(PreparedStatement ps = connection.prepareStatement(query)){
             int i=0;
             ps.setString(1, name);
             ps.setInt(2, age);
@@ -25,18 +24,15 @@ public class PatientDao implements IPatientDao {
 
             return affectedRows;
 
-
-
         }catch (SQLException e){
             e.printStackTrace();
         }
         return 0;
     }
     public void viewPatientsDao(){
-        try {
             String query = "select * from patients";
-            try (PreparedStatement ps = connection.prepareStatement(query);
-                 ResultSet rs = ps.executeQuery()) {
+            try (PreparedStatement ps = connection.prepareStatement(query)) {
+                ResultSet rs = ps.executeQuery();
                 System.out.println("\nPatients");
                 System.out.println("+------------+--------------------+-----+---------+");
                 System.out.println("| Patient ID |        Name        | Age |  Gender |");
@@ -50,23 +46,18 @@ public class PatientDao implements IPatientDao {
                     System.out.println("+------------+--------------------+-----+---------+");
                 }
             }
-        } catch (SQLException e) {
+         catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     public boolean getPatientByIdDao(int id){
         String query = "Select * from patients where id = ?";
-        try{
-            PreparedStatement ps = connection.prepareStatement(query);
+        try(PreparedStatement ps = connection.prepareStatement(query)){
             int i = 0;
             ps.setInt(++i, id);
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                return true;
-            }else{
-                return false;
-            }
+            return rs.next();
         }
         catch(SQLException e){
             e.printStackTrace();

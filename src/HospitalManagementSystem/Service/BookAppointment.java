@@ -3,6 +3,8 @@ package HospitalManagementSystem.Service;
 import HospitalManagementSystem.DAO.BookAppointmentDao;
 import HospitalManagementSystem.DaoInterfaces.IBookAppointmentDao;
 import HospitalManagementSystem.ServiceInterfaces.IBookAppointment;
+import HospitalManagementSystem.ServiceInterfaces.IDoctor;
+import HospitalManagementSystem.ServiceInterfaces.IPatient;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +24,7 @@ public class BookAppointment implements IBookAppointment {
     }
     private IBookAppointmentDao bookAppointmentDao;
 
-    public void bookAppointment(Patient patient, Doctor doctor){
+    public void bookAppointment(IPatient patient, IDoctor doctor){
         System.out.println("Enter Patient Id");
         while (!scanner.hasNextInt()) { scanner.next(); }
         int patient_id = scanner.nextInt();

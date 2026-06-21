@@ -17,7 +17,7 @@ public class BillingDao implements IBillingDao {
 
     public int generateBillDao(int patientId, int doctorId, String treatment, double amount, String billDate) {
         String query = "INSERT INTO bills(patient_id, doctor_id, treatment, amount, payment_status, bill_date) VALUES (?, ?, ?, ?, 'UNPAID', ?)";
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
+        try(PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setInt(1, patientId);
             ps.setInt(2, doctorId);
             ps.setString(3, treatment);

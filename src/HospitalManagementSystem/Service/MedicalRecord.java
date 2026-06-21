@@ -39,7 +39,12 @@ public class MedicalRecord implements IMedicalRecord {
         System.out.print("Enter Record Date (YYYY-MM-DD): ");
         String recordDate = scanner.next();
 
-        medicalRecordDao.addMedicalRecordDao(patientId,doctorId,diagnosis,prescription,recordDate);
+        int rows = medicalRecordDao.addMedicalRecordDao(patientId,doctorId,diagnosis,prescription,recordDate);
+        if (rows > 0) {
+            System.out.println("Medical record added successfully.");
+        } else {
+            System.out.println("Failed to add medical record.");
+        }
     }
 
     public void viewRecordsByPatient() {

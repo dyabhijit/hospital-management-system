@@ -15,9 +15,9 @@ public class DoctorDao implements IDoctorDao {
     }
 
     public void viewDoctorsDao(){
-        try {
-            String query = "select * from doctors";
-            PreparedStatement ps = connection.prepareStatement(query);
+
+        String query = "select * from doctors";
+        try(PreparedStatement ps = connection.prepareStatement(query)) {
             try (ResultSet rs = ps.executeQuery()) {
                 System.out.println("\nDoctors");
                 System.out.println("+-----------+--------------------+-------------------------+");
@@ -37,17 +37,12 @@ public class DoctorDao implements IDoctorDao {
     }
 
     public boolean getDoctorByIdDao(int id){
-        try{
-            String query = "Select * from doctors where id = ?";
-            PreparedStatement ps = connection.prepareStatement(query);
+        String query = "Select * from doctors where id = ?";
+        try(PreparedStatement ps = connection.prepareStatement(query)){
             int i = 0;
             ps.setInt(++i, id);
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                return true;
-            }else{
-                return false;
-            }
+            return rs.next();
         }
         catch(SQLException e){
             e.printStackTrace();

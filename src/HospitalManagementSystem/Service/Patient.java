@@ -3,42 +3,31 @@ package HospitalManagementSystem.Service;
 import HospitalManagementSystem.DAO.PatientDao;
 import HospitalManagementSystem.DaoInterfaces.IPatientDao;
 import HospitalManagementSystem.ServiceInterfaces.IPatient;
+import HospitalManagementSystem.Validation.PatientValidation;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Patient implements IPatient {
     private Connection connection;
     private Scanner scanner;
+    private PatientValidation patientValidation;
 
     public Patient(Connection connection,Scanner scanner){
         this.connection = connection;
         this.scanner = scanner;
         this.patientDao = new PatientDao(connection);
+        this.patientValidation = new PatientValidation(scanner);
     }
 
     private IPatientDao patientDao;
 
     public void addPatient(){
-        System.out.print("Enter Patient Name: ");
-        String name = scanner.next();
-        System.out.print("Enter Patient Age: ");
+        scanner.nextLine();
+        String name = patientValidation.checkName();
+        int age = patientValidation.checkAge();
+        String gender = patientValidation.checkGender();
 
-        int age;
-        do {
-            while (!scanner.hasNextInt()) {
-                System.out.print("Please enter a valid number: ");
-                scanner.next();
-            }
-            age = scanner.nextInt();
-            if (age <= 0 || age > 150) System.out.println("Please enter a realistic age.");
-        } while (age <= 0 || age > 150);
-
-        System.out.print("Enter Patient Gender: ");
-        String gender = scanner.next();
 
         int affectedRows = patientDao.addPatientDao(name,age,gender);
 

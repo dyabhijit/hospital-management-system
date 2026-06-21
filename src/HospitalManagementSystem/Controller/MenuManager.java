@@ -69,7 +69,7 @@ public class MenuManager {
             case 1:  patient.addPatient();                                    break;
             case 2:  patient.viewPatients();                                  break;
             case 3:  doctor.viewDoctors();                                    break;
-            case 4:  bookAppointment.bookAppointment((Patient) patient, (Doctor) doctor); break;
+            case 4:  bookAppointment.bookAppointment(patient,doctor); break;
             case 5:  medicalRecord.addMedicalRecord();                        break;
             case 6:  medicalRecord.viewRecordsByPatient();                    break;
             case 7:  medicalRecord.deleteRecord();                            break;
@@ -128,7 +128,7 @@ public class MenuManager {
             case 1: patient.addPatient();   break;
             case 2: patient.viewPatients(); break;
             case 3: doctor.viewDoctors();   break;
-            case 4: bookAppointment.bookAppointment((Patient) patient, (Doctor) doctor); break;
+            case 4: bookAppointment.bookAppointment(patient,doctor); break;
             case 5: billing.generateBill(); break;
             case 6:
                 System.out.print("Enter Patient ID: ");

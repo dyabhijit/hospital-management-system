@@ -1,9 +1,11 @@
 package HospitalManagementSystem.Auth;
 
+import HospitalManagementSystem.AuthInterfaces.IAuth;
+
 import java.sql.*;
 import java.util.Scanner;
 
-public class Auth {
+public class Auth implements IAuth {
     private Connection connection;
     private Scanner scanner;
 

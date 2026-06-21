@@ -13,23 +13,20 @@ public class MedicalRecordDao implements IMedicalRecordDao {
         this.connection = connection;
     }
 
-    public void addMedicalRecordDao(int patientId,int doctorId,String diagnosis,String prescription,String recordDate){
+    public int addMedicalRecordDao(int patientId, int doctorId, String diagnosis, String prescription, String recordDate){
         String query = "INSERT INTO medical_records(patient_id, doctor_id, diagnosis, prescription, record_date) VALUES (?, ?, ?, ?, ?)";
-        try (PreparedStatement ps = connection.prepareStatement(query)) {
+        try(PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setInt(1, patientId);
             ps.setInt(2, doctorId);
             ps.setString(3, diagnosis);
             ps.setString(4, prescription);
             ps.setString(5, recordDate);
             int rows = ps.executeUpdate();
-            if (rows > 0) {
-                System.out.println("Medical record added successfully.");
-            } else {
-                System.out.println("Failed to add medical record.");
-            }
+            return rows;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return patientId;
     }
 
     public void viewRecordsByPatientDao(int patientId){
